@@ -1,0 +1,64 @@
+{
+  "name": "simbi-backend",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "npm run generate:dev && tsc --build",
+    "build:prod": "npm run generate:dev && tsc --build && mkdir -p dist/prisma && cp src/prisma/schema.prisma dist/prisma/",
+    "dev": "nodemon src/server.ts",
+    "start": "node dist/server.js",
+    "migrate:dev": "npx prisma migrate dev --schema src/prisma/schema.prisma --name migration",
+    "generate:dev": "npx prisma generate --schema src/prisma/schema.prisma",
+    "migrate:deploy": "npx prisma migrate deploy --schema src/prisma/schema.prisma",
+    "postbuild": "npx prisma generate --schema src/prisma/schema.prisma",
+    "studio": "npx prisma studio --schema src/prisma/schema.prisma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sparklingbae/Simbi-Backend.git"
+  },
+  "keywords": [],
+  "authors": [
+    "Efemena Esegbue",
+    "Blessing Asuquo",
+    "Daniel Nwolu"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sparklingbae/Simbi-Backend/issues"
+  },
+  "homepage": "https://github.com/Sparklingbae/Simbi-Backend#readme",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "@types/joi": "^17.2.2",
+    "axios": "^1.9.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "groq-sdk": "^0.21.0",
+    "handlebars": "^4.7.8",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "nodemailer": "^7.0.3",
+    "openai": "^4.97.0",
+    "ts-node": "^10.9.2",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/chalk": "^0.4.31",
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/morgan": "^1.9.9",
+    "@types/nodemailer": "^6.4.17",
+    "@types/nodemon": "^1.19.6",
+    "chalk": "^5.4.1",
+    "nodemon": "^3.1.9",
+    "prisma": "^6.6.0"
+  }
+}

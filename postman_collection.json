@@ -1,0 +1,467 @@
+{
+  "info": {
+    "name": "SIMBI Backend API",
+    "description": "Complete API collection for SIMBI AI Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"firstName\": \"Test\",\n  \"lastName\": \"User\",\n  \"educationLevel\": \"undergraduate\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/signup",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refresh_token}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/refresh",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "auth", "refresh"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Management",
+      "item": [
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/users/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "users", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Updated\",\n  \"lastName\": \"Name\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/users/update/:userId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "users", "update", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "{{user_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/users/delete/:userId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "users", "delete", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "{{user_id}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Study Plans",
+      "item": [
+        {
+          "name": "Generate Study Plan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Mathematics Study Plan\",\n  \"subjects\": [\"Calculus\", \"Linear Algebra\"],\n  \"startDate\": \"2025-01-01\",\n  \"endDate\": \"2025-03-31\",\n  \"daysAvailable\": [\"Monday\", \"Wednesday\", \"Friday\"],\n  \"dailyStudyDuration\": \"2h\",\n  \"breakDuration\": \"15m\",\n  \"preferredStudyMethod\": \"pomodoro\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/study-plan/generate",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "study-plan", "generate"]
+            }
+          }
+        },
+        {
+          "name": "Get All Study Plans",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/study-plan/all",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "study-plan", "all"]
+            }
+          }
+        },
+        {
+          "name": "Get Study Plan by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/study-plan/:planId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "study-plan", ":planId"],
+              "variable": [
+                {
+                  "key": "planId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Complete Study Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planId\": \"plan-id-here\",\n  \"sessionId\": \"session-id-here\",\n  \"timeSpent\": \"45\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/study-plan/complete-session",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "study-plan", "complete-session"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "Get User Chats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/chat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "chat"]
+            }
+          }
+        },
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"How can I improve my study habits?\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/chat/message",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "chat", "message"]
+            }
+          }
+        },
+        {
+          "name": "Get Chat Messages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/chat/:chatId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "chat", ":chatId"],
+              "variable": [
+                {
+                  "key": "chatId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Chat",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/chat/:chatId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "chat", ":chatId"],
+              "variable": [
+                {
+                  "key": "chatId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pre-Assessment",
+      "item": [
+        {
+          "name": "Submit Pre-Assessment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"What's your preferred way of studying?\": \"Visual learning with diagrams\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/pre-assessment",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "pre-assessment"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Create Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"user-id-here\",\n  \"message\": \"Your study session is about to start\",\n  \"type\": \"reminder\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notifications",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications"]
+            }
+          }
+        },
+        {
+          "name": "Get Unread Notifications",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/unread/:userId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "unread", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Notification as Read",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/read/:notificationId",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "read", ":notificationId"],
+              "variable": [
+                {
+                  "key": "notificationId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refresh_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
