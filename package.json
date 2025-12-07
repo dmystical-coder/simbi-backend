@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "scripts": {
-    "build": "npx prisma generate --schema=./src/prisma/schema.prisma && tsc --build && mkdir -p dist/prisma && cp src/prisma/schema.prisma dist/prisma/",
-    "build:prod": "npm run generate:dev && tsc --build && mkdir -p dist/prisma && cp src/prisma/schema.prisma dist/prisma/",
+    "build": "npx prisma generate --schema=./src/prisma/schema.prisma && tsc --build && mkdir -p dist/prisma/generated && cp -r src/prisma/generated dist/prisma/ && cp src/prisma/schema.prisma dist/prisma/",
+    "build:prod": "npm run generate:dev && tsc --build && mkdir -p dist/prisma/generated && cp -r src/prisma/generated dist/prisma/ && cp src/prisma/schema.prisma dist/prisma/",
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js",
     "migrate:dev": "npx prisma migrate dev --schema src/prisma/schema.prisma --name migration",
