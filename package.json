@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "dist/server.js",
   "scripts": {
-    "build": "npm run generate:dev && tsc --build",
+    "build": "npx prisma generate --schema=./src/prisma/schema.prisma && tsc --build && mkdir -p dist/prisma && cp src/prisma/schema.prisma dist/prisma/",
     "build:prod": "npm run generate:dev && tsc --build && mkdir -p dist/prisma && cp src/prisma/schema.prisma dist/prisma/",
     "dev": "nodemon src/server.ts",
     "start": "node dist/server.js",

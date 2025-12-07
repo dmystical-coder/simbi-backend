@@ -12,23 +12,27 @@ preassessmentRoute.post(
   authMiddleware,
   preassessmentValidator,
   async (req: CustomRequest, res: Response, next: NextFunction) => {
-    await prisma.user.update({
-      where: {
-        id: req.user?.id,
-      },
-      data: {
-        preferredStudyMethod:
-          req.body["What's your preferred way of studying?"],
-        preAssesmentQuestions: req.body,
-        hasCompletedPreAssessment: true,
-        preAssessmentCompletedAt: new Date(),
-      },
-    });
-    res.status(200).json({
-      status: "success",
-      message: "Preassessment saved successfully",
-    });
-    return;
+    try {
+      await prisma.user.update({
+        where: {
+          id: req.user?.id,
+        },
+        data: {
+          preferredStudyMethod:
+            req.body["What's your preferred way of studying?"],
+          preAssesmentQuestions: req.body,
+          hasCompletedPreAssessment: true,
+          preAssessmentCompletedAt: new Date(),
+        },
+      });
+      res.status(200).json({
+        status: "success",
+        message: "Preassessment saved successfully",
+      });
+      return;
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
