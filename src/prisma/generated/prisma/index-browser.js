@@ -133,7 +133,9 @@ exports.Prisma.UserScalarFieldEnum = {
   preferredStudyMethod: 'preferredStudyMethod',
   createdAt: 'createdAt',
   lastLogin: 'lastLogin',
-  preAssesmentQuestions: 'preAssesmentQuestions'
+  preAssesmentQuestions: 'preAssesmentQuestions',
+  hasCompletedPreAssessment: 'hasCompletedPreAssessment',
+  preAssessmentCompletedAt: 'preAssessmentCompletedAt'
 };
 
 exports.Prisma.NotificationScalarFieldEnum = {

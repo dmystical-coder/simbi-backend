@@ -6,46 +6,48 @@ import { QuizAttempt } from "./quiz-attempt.interfaces";
 import { ProgressTracking } from "./progress-tracking.interfaces";
 
 export interface User {
-	id: string;
-	username: string;
-	email: string;
-	passwordHash: string;
-	firstName?: string ;
-	lastName?: string ;
-	educationLevel?: string ;
-	timezone: string;
-	preferredStudyMethod?: string ;
-	createdAt: Date;
-	lastLogin?: Date ;
+  id: string;
+  username: string;
+  email: string;
+  passwordHash: string;
+  firstName?: string;
+  lastName?: string;
+  educationLevel?: string;
+  timezone: string;
+  preferredStudyMethod?: string;
+  createdAt: Date;
+  lastLogin?: Date;
+  hasCompletedPreAssessment?: boolean;
+  preAssessmentCompletedAt?: Date;
 
-	// Relations
-	subjects?: Subject[];
-	studyPlans?: StudyPlanCreate[];
-	studySessions?: StudySession[];
-	milestones?: Milestone[];
-	quizAttempts?: QuizAttempt[];
-	progressTracking?: ProgressTracking[];
+  // Relations
+  subjects?: Subject[];
+  studyPlans?: StudyPlanCreate[];
+  studySessions?: StudySession[];
+  milestones?: Milestone[];
+  quizAttempts?: QuizAttempt[];
+  progressTracking?: ProgressTracking[];
 }
 
 export interface CreateUserInput {
-	username: string;
-	email: string;
-	passwordHash: string;
-	firstName: string;
-	lastName: string;
-	educationLevel?: string;
-	timezone?: string;
-	preferredStudyMethod?: string;
+  username: string;
+  email: string;
+  passwordHash: string;
+  firstName: string;
+  lastName: string;
+  educationLevel?: string;
+  timezone?: string;
+  preferredStudyMethod?: string;
 }
 
 export interface UpdateUserInput {
-	username?: string;
-	email?: string;
-	passwordHash?: string;
-	firstName?: string ;
-	lastName?: string ;
-	educationLevel?: string ;
-	timezone?: string;
-	preferredStudyMethod?: string ;
-	lastLogin?: Date ;
+  username?: string;
+  email?: string;
+  passwordHash?: string;
+  firstName?: string;
+  lastName?: string;
+  educationLevel?: string;
+  timezone?: string;
+  preferredStudyMethod?: string;
+  lastLogin?: Date;
 }

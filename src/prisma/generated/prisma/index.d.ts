@@ -1557,6 +1557,8 @@ export namespace Prisma {
     preferredStudyMethod: string | null
     createdAt: Date | null
     lastLogin: Date | null
+    hasCompletedPreAssessment: boolean | null
+    preAssessmentCompletedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1571,6 +1573,8 @@ export namespace Prisma {
     preferredStudyMethod: string | null
     createdAt: Date | null
     lastLogin: Date | null
+    hasCompletedPreAssessment: boolean | null
+    preAssessmentCompletedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1586,6 +1590,8 @@ export namespace Prisma {
     createdAt: number
     lastLogin: number
     preAssesmentQuestions: number
+    hasCompletedPreAssessment: number
+    preAssessmentCompletedAt: number
     _all: number
   }
 
@@ -1602,6 +1608,8 @@ export namespace Prisma {
     preferredStudyMethod?: true
     createdAt?: true
     lastLogin?: true
+    hasCompletedPreAssessment?: true
+    preAssessmentCompletedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1616,6 +1624,8 @@ export namespace Prisma {
     preferredStudyMethod?: true
     createdAt?: true
     lastLogin?: true
+    hasCompletedPreAssessment?: true
+    preAssessmentCompletedAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1631,6 +1641,8 @@ export namespace Prisma {
     createdAt?: true
     lastLogin?: true
     preAssesmentQuestions?: true
+    hasCompletedPreAssessment?: true
+    preAssessmentCompletedAt?: true
     _all?: true
   }
 
@@ -1719,6 +1731,8 @@ export namespace Prisma {
     createdAt: Date
     lastLogin: Date | null
     preAssesmentQuestions: JsonValue | null
+    hasCompletedPreAssessment: boolean
+    preAssessmentCompletedAt: Date | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1751,6 +1765,8 @@ export namespace Prisma {
     createdAt?: boolean
     lastLogin?: boolean
     preAssesmentQuestions?: boolean
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: boolean
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     studyPlans?: boolean | User$studyPlansArgs<ExtArgs>
     studySessions?: boolean | User$studySessionsArgs<ExtArgs>
@@ -1772,6 +1788,8 @@ export namespace Prisma {
     createdAt?: boolean
     lastLogin?: boolean
     preAssesmentQuestions?: boolean
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1787,6 +1805,8 @@ export namespace Prisma {
     createdAt?: boolean
     lastLogin?: boolean
     preAssesmentQuestions?: boolean
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1802,9 +1822,11 @@ export namespace Prisma {
     createdAt?: boolean
     lastLogin?: boolean
     preAssesmentQuestions?: boolean
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "passwordHash" | "firstName" | "lastName" | "educationLevel" | "timezone" | "preferredStudyMethod" | "createdAt" | "lastLogin" | "preAssesmentQuestions", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "passwordHash" | "firstName" | "lastName" | "educationLevel" | "timezone" | "preferredStudyMethod" | "createdAt" | "lastLogin" | "preAssesmentQuestions" | "hasCompletedPreAssessment" | "preAssessmentCompletedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     studyPlans?: boolean | User$studyPlansArgs<ExtArgs>
@@ -1838,6 +1860,8 @@ export namespace Prisma {
       createdAt: Date
       lastLogin: Date | null
       preAssesmentQuestions: Prisma.JsonValue | null
+      hasCompletedPreAssessment: boolean
+      preAssessmentCompletedAt: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2278,6 +2302,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly lastLogin: FieldRef<"User", 'DateTime'>
     readonly preAssesmentQuestions: FieldRef<"User", 'Json'>
+    readonly hasCompletedPreAssessment: FieldRef<"User", 'Boolean'>
+    readonly preAssessmentCompletedAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -9601,7 +9627,9 @@ export namespace Prisma {
     preferredStudyMethod: 'preferredStudyMethod',
     createdAt: 'createdAt',
     lastLogin: 'lastLogin',
-    preAssesmentQuestions: 'preAssesmentQuestions'
+    preAssesmentQuestions: 'preAssesmentQuestions',
+    hasCompletedPreAssessment: 'hasCompletedPreAssessment',
+    preAssessmentCompletedAt: 'preAssessmentCompletedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -9785,6 +9813,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -9795,13 +9830,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -9838,6 +9866,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     lastLogin?: DateTimeNullableFilter<"User"> | Date | string | null
     preAssesmentQuestions?: JsonNullableFilter<"User">
+    hasCompletedPreAssessment?: BoolFilter<"User"> | boolean
+    preAssessmentCompletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     notifications?: NotificationListRelationFilter
     studyPlans?: StudyPlanListRelationFilter
     studySessions?: StudySessionListRelationFilter
@@ -9858,6 +9888,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     lastLogin?: SortOrderInput | SortOrder
     preAssesmentQuestions?: SortOrderInput | SortOrder
+    hasCompletedPreAssessment?: SortOrder
+    preAssessmentCompletedAt?: SortOrderInput | SortOrder
     notifications?: NotificationOrderByRelationAggregateInput
     studyPlans?: StudyPlanOrderByRelationAggregateInput
     studySessions?: StudySessionOrderByRelationAggregateInput
@@ -9881,6 +9913,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     lastLogin?: DateTimeNullableFilter<"User"> | Date | string | null
     preAssesmentQuestions?: JsonNullableFilter<"User">
+    hasCompletedPreAssessment?: BoolFilter<"User"> | boolean
+    preAssessmentCompletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     notifications?: NotificationListRelationFilter
     studyPlans?: StudyPlanListRelationFilter
     studySessions?: StudySessionListRelationFilter
@@ -9901,6 +9935,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     lastLogin?: SortOrderInput | SortOrder
     preAssesmentQuestions?: SortOrderInput | SortOrder
+    hasCompletedPreAssessment?: SortOrder
+    preAssessmentCompletedAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -9922,6 +9958,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     lastLogin?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     preAssesmentQuestions?: JsonNullableWithAggregatesFilter<"User">
+    hasCompletedPreAssessment?: BoolWithAggregatesFilter<"User"> | boolean
+    preAssessmentCompletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
   export type NotificationWhereInput = {
@@ -10364,6 +10402,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationCreateNestedManyWithoutUserInput
     studyPlans?: StudyPlanCreateNestedManyWithoutUserInput
     studySessions?: StudySessionCreateNestedManyWithoutUserInput
@@ -10384,6 +10424,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     studyPlans?: StudyPlanUncheckedCreateNestedManyWithoutUserInput
     studySessions?: StudySessionUncheckedCreateNestedManyWithoutUserInput
@@ -10404,6 +10446,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     studyPlans?: StudyPlanUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUpdateManyWithoutUserNestedInput
@@ -10424,6 +10468,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     studyPlans?: StudyPlanUncheckedUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUncheckedUpdateManyWithoutUserNestedInput
@@ -10444,6 +10490,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -10459,6 +10507,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -10474,6 +10524,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type NotificationCreateInput = {
@@ -10997,6 +11049,11 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NotificationListRelationFilter = {
     every?: NotificationWhereInput
     some?: NotificationWhereInput
@@ -11065,6 +11122,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     lastLogin?: SortOrder
     preAssesmentQuestions?: SortOrder
+    hasCompletedPreAssessment?: SortOrder
+    preAssessmentCompletedAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -11079,6 +11138,8 @@ export namespace Prisma {
     preferredStudyMethod?: SortOrder
     createdAt?: SortOrder
     lastLogin?: SortOrder
+    hasCompletedPreAssessment?: SortOrder
+    preAssessmentCompletedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -11093,6 +11154,8 @@ export namespace Prisma {
     preferredStudyMethod?: SortOrder
     createdAt?: SortOrder
     lastLogin?: SortOrder
+    hasCompletedPreAssessment?: SortOrder
+    preAssessmentCompletedAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -11185,6 +11248,14 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -11194,11 +11265,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type UserScalarRelationFilter = {
@@ -11258,14 +11324,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringNullableListFilter<$PrismaModel = never> = {
@@ -11667,6 +11725,10 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type NotificationUpdateManyWithoutUserNestedInput = {
     create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
     connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
@@ -11811,10 +11873,6 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
     connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
     connect?: UserWhereUniqueInput
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
@@ -12078,6 +12136,11 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -12185,9 +12248,12 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -12215,14 +12281,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12610,6 +12668,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     studyPlans?: StudyPlanCreateNestedManyWithoutUserInput
     studySessions?: StudySessionCreateNestedManyWithoutUserInput
     milestones?: MilestoneCreateNestedManyWithoutUserInput
@@ -12629,6 +12689,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     studyPlans?: StudyPlanUncheckedCreateNestedManyWithoutUserInput
     studySessions?: StudySessionUncheckedCreateNestedManyWithoutUserInput
     milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
@@ -12664,6 +12726,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     studyPlans?: StudyPlanUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUpdateManyWithoutUserNestedInput
     milestones?: MilestoneUpdateManyWithoutUserNestedInput
@@ -12683,6 +12747,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     studyPlans?: StudyPlanUncheckedUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUncheckedUpdateManyWithoutUserNestedInput
     milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
@@ -12702,6 +12768,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationCreateNestedManyWithoutUserInput
     studySessions?: StudySessionCreateNestedManyWithoutUserInput
     milestones?: MilestoneCreateNestedManyWithoutUserInput
@@ -12721,6 +12789,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     studySessions?: StudySessionUncheckedCreateNestedManyWithoutUserInput
     milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
@@ -12790,6 +12860,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUpdateManyWithoutUserNestedInput
     milestones?: MilestoneUpdateManyWithoutUserNestedInput
@@ -12809,6 +12881,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUncheckedUpdateManyWithoutUserNestedInput
     milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
@@ -12844,6 +12918,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationCreateNestedManyWithoutUserInput
     studyPlans?: StudyPlanCreateNestedManyWithoutUserInput
     milestones?: MilestoneCreateNestedManyWithoutUserInput
@@ -12863,6 +12939,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     studyPlans?: StudyPlanUncheckedCreateNestedManyWithoutUserInput
     milestones?: MilestoneUncheckedCreateNestedManyWithoutUserInput
@@ -12933,6 +13011,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     studyPlans?: StudyPlanUpdateManyWithoutUserNestedInput
     milestones?: MilestoneUpdateManyWithoutUserNestedInput
@@ -12952,6 +13032,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     studyPlans?: StudyPlanUncheckedUpdateManyWithoutUserNestedInput
     milestones?: MilestoneUncheckedUpdateManyWithoutUserNestedInput
@@ -13012,6 +13094,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationCreateNestedManyWithoutUserInput
     studyPlans?: StudyPlanCreateNestedManyWithoutUserInput
     studySessions?: StudySessionCreateNestedManyWithoutUserInput
@@ -13031,6 +13115,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     studyPlans?: StudyPlanUncheckedCreateNestedManyWithoutUserInput
     studySessions?: StudySessionUncheckedCreateNestedManyWithoutUserInput
@@ -13066,6 +13152,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     studyPlans?: StudyPlanUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUpdateManyWithoutUserNestedInput
@@ -13085,6 +13173,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     studyPlans?: StudyPlanUncheckedUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUncheckedUpdateManyWithoutUserNestedInput
@@ -13128,6 +13218,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationCreateNestedManyWithoutUserInput
     studyPlans?: StudyPlanCreateNestedManyWithoutUserInput
     studySessions?: StudySessionCreateNestedManyWithoutUserInput
@@ -13147,6 +13239,8 @@ export namespace Prisma {
     createdAt?: Date | string
     lastLogin?: Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: boolean
+    preAssessmentCompletedAt?: Date | string | null
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     studyPlans?: StudyPlanUncheckedCreateNestedManyWithoutUserInput
     studySessions?: StudySessionUncheckedCreateNestedManyWithoutUserInput
@@ -13209,6 +13303,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     studyPlans?: StudyPlanUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUpdateManyWithoutUserNestedInput
@@ -13228,6 +13324,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lastLogin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preAssesmentQuestions?: NullableJsonNullValueInput | InputJsonValue
+    hasCompletedPreAssessment?: BoolFieldUpdateOperationsInput | boolean
+    preAssessmentCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     studyPlans?: StudyPlanUncheckedUpdateManyWithoutUserNestedInput
     studySessions?: StudySessionUncheckedUpdateManyWithoutUserNestedInput

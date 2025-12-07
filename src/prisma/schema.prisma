@@ -28,6 +28,8 @@ model User {
   createdAt           DateTime            @default(now())
   lastLogin           DateTime?
   preAssesmentQuestions  Json?
+  hasCompletedPreAssessment Boolean          @default(false)
+  preAssessmentCompletedAt  DateTime?
   
   // Relations
   studyPlans          StudyPlan[]
