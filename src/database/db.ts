@@ -1,16 +1,17 @@
 import { PrismaClient } from "../prisma/generated/prisma";
 import Config from "../config/settings";
 
-const prisma = new PrismaClient({
-	datasources: {
-		db: {
-			url:
-				Config.ENVIRONMENT === "production"
-					? Config.DATABASE_URL
-					: Config.DATABASE_URL_TEST,
-		},
-	},
-});
+// Determine which database URL to use based on environment
+const databaseUrl = Config.ENVIRONMENT === "production" 
+	? Config.DATABASE_URL 
+	: Config.DATABASE_URL_TEST;
+
+// Set the DATABASE_URL environment variable for Prisma
+if (databaseUrl) {
+	process.env.DATABASE_URL = databaseUrl;
+}
+
+const prisma = new PrismaClient();
 
 
 //function to connect

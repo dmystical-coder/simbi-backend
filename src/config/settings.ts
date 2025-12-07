@@ -7,6 +7,16 @@ class Config {
 	static DATABASE_URL: string | undefined = process.env.DATABASE_URL;
 	static DATABASE_URL_TEST: string | undefined = process.env.DATABASE_URL_TEST;
 	static ENVIRONMENT: string = process.env.ENVIRONMENT || "development";
+
+	// Validate required environment variables
+	static validate() {
+		if (this.ENVIRONMENT === "production" && !this.DATABASE_URL) {
+			throw new Error("DATABASE_URL environment variable is required in production");
+		}
+		if (this.ENVIRONMENT !== "production" && !this.DATABASE_URL_TEST) {
+			console.warn("DATABASE_URL_TEST not set, falling back to DATABASE_URL");
+		}
+	}
 	static ACCESS_JWT_SECRET: string = process.env.ACCESS_JWT_SECRET ?? "your-secret-key";
 	static REFRESH_JWT_SECRET: string = process.env.REFRESH_JWT_SECRET ?? "your-secret-key";
 	static JWT_EXPIRATION_MINUTES: number = process.env.JWT_EXPIRATION_MINUTES
